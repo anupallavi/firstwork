@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Form</title>
+		<style>
+			table,td{
+				border:2px solid blue;
+			}
+			.form{
+				color:brown;
+			    }
+		</style>
+	</head>
+	
+	
+	<body>
+		<form id= "form">
+		<div class="form">
+			<label><b>Name: </label>
+			<input type= "text" required
+			placeholder= "Enter your name"
+			id= "name"></input></br>
+
+			<label>Email: </label>
+			<input type= "email" required
+			placeholder= "Enter your email"
+			id= "email"></input></br>
+			
+			<label>Age: </label>
+			<input type= "number" required
+			placeholder= "Enter your age"
+			id= "age"></input></b></br></br>
+			
+			<button type="button"
+			onclick="addtotable()" > ADD TO TABLE </button>
+			</form>
+		</div></br>
+		
+			<table id="table">
+			<thead>
+				<tr>
+					<td>NAME</td>
+					<td>EMAIL</td>
+					<td>AGE</td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			</table>
+		<script>
+			function addtotable()
+			{
+				var name=document.getElementById("name").value;
+				var email=document.getElementById("email").value;
+				var age=document.getElementById("age").value;
+			
+				if(name!='' && email != '' && age !='')
+				{
+					var emailReg= /^([\w-\,]+@([\w-]+\.)+[\w-]{2,4})?$/;
+					if(email.match(emailReg))
+					{	var ageReg=/^[0-9]+$/;
+					if(age.match(ageReg))
+					{
+						var table= document.getElementById("table");
+						var row= document.createElement('tr');
+						var cell1= document.createElement('td');
+						var cell2= document.createElement('td');
+						var cell3= document.createElement('td');
+						cell1.innerHTML=name;
+						cell2.innerHTML=email;
+						cell3.innerHTML=age;
+						row.appendChild(cell1);
+						row.appendChild(cell2);
+						row.appendChild(cell3);
+						console.log(JSON.stringify(table.children));
+						table.children[1].appendChild(row);
+						document.getElementById("form").reset();
+					}
+				}}
+				else if(age=='')
+					alert("Age field is empty");
+				
+				else if(email=='')
+					alert("Email field is empty");
+				
+				else 
+					alert("Name field is empty");
+				
+				
+			}
+		</script>
+	</body>
+</html>
+			
+		
